@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>소리를 재생해 자고 있는 사람을 깨워주세요.</title>
+  <style>
+    img { width: 140px; margin-right: 10px; cursor: pointer; user-select: none;}
+    body {text-align: center;;padding: 50px 10px; background-color: black;}
+    h1 {color: white; margin-top: 0px}
+    #sleepImg {width: 450px; display: block; margin: auto;}
+    .wrap {display: inline-block;}
+    .btn {width: 140px; margin:0 8px; cursor: pointer; user-select: none;}
+  </style>
+</head>
+<body>
+<h1>소리를 재생해 자고 있는 사람을 깨워주세요.</h1>
+
+  <img id ="sleepImg" src="sleep.jpg">
+
+ <div class="wrap">
+  <img id="alarmImg"  src="alarm.jpg">
+  <img id="plateImg"  src="plate.jpg">
+  <img id="drumImg"   src="drum.jpg">
+  <img id="hammerImg" src="hammer.jpg">
+</div>
+
+  <audio id="alarmSnd"  src="alarm.wav"  preload="auto"></audio>
+  <audio id="plateSnd"  src="plate.wav"  preload="auto"></audio>
+  <audio id="drumSnd"   src="drum.wav"   preload="auto"></audio>
+  <audio id="hammerSnd" src="hammer.wav" preload="auto"></audio>
+
+  <script>
+    let alarmPlay = false, platePlay = false, drumPlay = false, hammerPlay = false;
+
+    function checkWake(){
+  if (alarmPlay && platePlay && drumPlay && hammerPlay) {
+    sleepImg.src = "wake.jpg";
+  } else {
+    sleepImg.src = "sleep.jpg";
+  }
+}
+ 
+    alarmImg.onclick = function(){
+      if(!alarmPlay){
+        alarmSnd.currentTime = 0; alarmSnd.play();
+        alarmImg.style.filter = "invert(100%)";
+        alarmPlay = true; checkWake();
+      }else{
+        alarmSnd.pause(); alarmSnd.currentTime = 0;
+        alarmImg.style.filter = "invert(0%)";
+        alarmPlay = false;  checkWake();
+      }
+    };
+
+
+    plateImg.onclick = function(){
+      if(!platePlay){
+        plateSnd.currentTime = 0; plateSnd.play();
+        plateImg.style.filter = "invert(100%)";
+        platePlay = true; checkWake();
+      }else{
+        plateSnd.pause(); plateSnd.currentTime = 0;
+        plateImg.style.filter = "invert(0%)";
+        platePlay = false;  checkWake();
+      }
+    };
+
+
+    drumImg.onclick = function(){
+      if(!drumPlay){
+        drumSnd.currentTime = 0; drumSnd.play();
+        drumImg.style.filter = "invert(100%)";
+        drumPlay = true; checkWake();
+      }else{
+        drumSnd.pause(); drumSnd.currentTime = 0;
+        drumImg.style.filter = "invert(0%)";
+        drumPlay = false;  checkWake();
+      }
+    };
+
+
+    hammerImg.onclick = function(){
+      if(!hammerPlay){
+        hammerSnd.currentTime = 0; hammerSnd.play();
+        hammerImg.style.filter = "invert(100%)";
+        hammerPlay = true; checkWake();
+      }else{
+        hammerSnd.pause(); hammerSnd.currentTime = 0;
+        hammerImg.style.filter = "invert(0%)";
+        hammerPlay = false;  checkWake();
+      }
+    };
+  </script>
+</body>
+</html>
